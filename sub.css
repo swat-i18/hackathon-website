@@ -151,6 +151,11 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
     transition: all 0.2s ease;
 }
 
@@ -174,6 +179,11 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
     transition: all 0.25s ease;
     box-shadow: 0 4px 15px rgba(53, 224, 192, 0.25);
 }
