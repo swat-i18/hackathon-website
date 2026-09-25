@@ -1,11 +1,11 @@
-const connectDb = require('../database');
+const connectDb = require("../database");
 
 async function runSeed() {
-    console.log("Seeding database...");
-    const db = await connectDb();
+  console.log("Seeding database...");
+  const db = await connectDb();
 
-    // Create Tables
-    await db.exec(`
+  // Create Tables
+  await db.exec(`
         CREATE TABLE IF NOT EXISTS energy (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             current_consumption_kwh INTEGER,
@@ -77,8 +77,8 @@ async function runSeed() {
         );
     `);
 
-    // Clear existing data
-    await db.exec(`
+  // Clear existing data
+  await db.exec(`
         DELETE FROM energy;
         DELETE FROM water;
         DELETE FROM waste;
@@ -88,36 +88,88 @@ async function runSeed() {
         DELETE FROM alerts;
     `);
 
-    console.log("Inserting demo data...");
+  console.log("Inserting demo data...");
 
-    // Insert current values
-    await db.run(`INSERT INTO beds (total_beds, occupied_beds, available_beds, icu_total, icu_occupied, icu_available, general_total, general_occupied, general_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [150, 118, 32, 30, 25, 5, 120, 93, 27]);
-    await db.run(`INSERT INTO staff (total_staff, available_staff, on_duty, doctors, nurses, support_staff) VALUES (?, ?, ?, ?, ?, ?)`, [124, 48, 76, 24, 62, 38]);
+  // Insert current values
+  await db.run(
+    `INSERT INTO beds (total_beds, occupied_beds, available_beds, icu_total, icu_occupied, icu_available, general_total, general_occupied, general_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [150, 118, 32, 30, 25, 5, 120, 93, 27],
+  );
+  await db.run(
+    `INSERT INTO staff (total_staff, available_staff, on_duty, doctors, nurses, support_staff) VALUES (?, ?, ?, ?, ?, ?)`,
+    [124, 48, 76, 24, 62, 38],
+  );
 
-    // Alerts
-    await db.run(`INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`, ['energy', 'High Energy Consumption', 'Current energy consumption is approaching the configured threshold.', 'medium', 'active']);
-    await db.run(`INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`, ['beds', 'ICU Bed Capacity', 'ICU occupancy is above 80 percent.', 'high', 'active']);
-    await db.run(`INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`, ['water', 'Water Usage Monitoring', 'Water consumption is within the normal operating range.', 'low', 'resolved']);
+  // Alerts
+  await db.run(
+    `INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`,
+    [
+      "energy",
+      "High Energy Consumption",
+      "Current energy consumption is approaching the configured threshold.",
+      "medium",
+      "active",
+    ],
+  );
+  await db.run(
+    `INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`,
+    [
+      "beds",
+      "ICU Bed Capacity",
+      "ICU occupancy is above 80 percent.",
+      "high",
+      "active",
+    ],
+  );
+  await db.run(
+    `INSERT INTO alerts (type, title, message, severity, status) VALUES (?, ?, ?, ?, ?)`,
+    [
+      "water",
+      "Water Usage Monitoring",
+      "Water consumption is within the normal operating range.",
+      "low",
+      "resolved",
+    ],
+  );
 
-    // 30 days of historical data
-    for(let i=30; i>=0; i--) {
-        const timeOffset = `-${i} days`;
-        const energyCurrent = 8450 + Math.floor(Math.random() * 1000 - 500);
-        const waterDaily = 10200 + Math.floor(Math.random() * 1000 - 500);
-        const wasteTotal = 1250 + Math.floor(Math.random() * 100 - 50);
-        const wasteRecycled = Math.floor(wasteTotal * 0.57); // ~57%
-        const wasteMedical = Math.floor(wasteTotal * 0.25);
-        const wasteGeneral = wasteTotal - wasteRecycled - wasteMedical;
-        const wasteSeg = Math.floor((wasteRecycled / wasteTotal) * 100);
-        const solarGen = 4280 + Math.floor(Math.random() * 500 - 250);
+  // 30 days of historical data
+  for (let i = 30; i >= 0; i--) {
+    const timeOffset = `-${i} days`;
+    const energyCurrent = 8450 + Math.floor(Math.random() * 1000 - 500);
+    const waterDaily = 10200 + Math.floor(Math.random() * 1000 - 500);
+    const wasteTotal = 1250 + Math.floor(Math.random() * 100 - 50);
+    const wasteRecycled = Math.floor(wasteTotal * 0.57); // ~57%
+    const wasteMedical = Math.floor(wasteTotal * 0.25);
+    const wasteGeneral = wasteTotal - wasteRecycled - wasteMedical;
+    const wasteSeg = Math.floor((wasteRecycled / wasteTotal) * 100);
+    const solarGen = 4280 + Math.floor(Math.random() * 500 - 250);
 
-        await db.run(`INSERT INTO energy (current_consumption_kwh, daily_consumption_kwh, monthly_consumption_kwh, threshold_kwh, timestamp) VALUES (?, ?, ?, ?, datetime('now', ?))`, [energyCurrent, 18450, 482300, 10000, timeOffset]);
-        await db.run(`INSERT INTO water (daily_usage_liters, monthly_usage_liters, threshold_liters, timestamp) VALUES (?, ?, ?, datetime('now', ?))`, [waterDaily, 298500, 15000, timeOffset]);
-        await db.run(`INSERT INTO waste (total_waste_kg, recycled_waste_kg, medical_waste_kg, general_waste_kg, segregation_percentage, timestamp) VALUES (?, ?, ?, ?, ?, datetime('now', ?))`, [wasteTotal, wasteRecycled, wasteMedical, wasteGeneral, wasteSeg, timeOffset]);
-        await db.run(`INSERT INTO solar (generated_kwh, daily_generation_kwh, monthly_generation_kwh, timestamp) VALUES (?, ?, ?, datetime('now', ?))`, [solarGen, solarGen, 125400, timeOffset]);
-    }
+    await db.run(
+      `INSERT INTO energy (current_consumption_kwh, daily_consumption_kwh, monthly_consumption_kwh, threshold_kwh, timestamp) VALUES (?, ?, ?, ?, datetime('now', ?))`,
+      [energyCurrent, 18450, 482300, 10000, timeOffset],
+    );
+    await db.run(
+      `INSERT INTO water (daily_usage_liters, monthly_usage_liters, threshold_liters, timestamp) VALUES (?, ?, ?, datetime('now', ?))`,
+      [waterDaily, 298500, 15000, timeOffset],
+    );
+    await db.run(
+      `INSERT INTO waste (total_waste_kg, recycled_waste_kg, medical_waste_kg, general_waste_kg, segregation_percentage, timestamp) VALUES (?, ?, ?, ?, ?, datetime('now', ?))`,
+      [
+        wasteTotal,
+        wasteRecycled,
+        wasteMedical,
+        wasteGeneral,
+        wasteSeg,
+        timeOffset,
+      ],
+    );
+    await db.run(
+      `INSERT INTO solar (generated_kwh, daily_generation_kwh, monthly_generation_kwh, timestamp) VALUES (?, ?, ?, datetime('now', ?))`,
+      [solarGen, solarGen, 125400, timeOffset],
+    );
+  }
 
-    console.log("Database seeded successfully.");
+  console.log("Database seeded successfully.");
 }
 
 runSeed();

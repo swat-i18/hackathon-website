@@ -1,1236 +1,450 @@
-﻿<!DOCTYPE html>
-
-
+<!doctype html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-
-
-<head>
-
-
-
-    <meta charset="UTF-8">
-
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Overview | Vertex Five Hospital Intelligence</title>
 
+    <link rel="stylesheet" href="sub.css" />
+  </head>
 
-
-    <link rel="stylesheet" href="sub.css">
-
-
-
-</head>
-
-
-
-<body class="app-layout">
-
-
-
-
-
-
-
+  <body class="app-layout">
     <div class="sidebar-overlay"></div>
-
-
-
-
-
-
 
     <!-- ================= SIDEBAR ================= -->
 
-
-
     <aside class="sidebar">
+      <a href="index.html" class="logo-area">
+        <img src="logo.png" alt="Vertex Five Logo" class="sidebar-logo-img" />
 
+        <div class="logo-text">
+          <h2>Vertex Five</h2>
 
+          <p>Hospital Intelligence</p>
+        </div>
+      </a>
 
-        <a href="index.html" class="logo-area">
+      <nav class="sidebar-nav">
+        <a href="overview.html" class="side-link active">
+          <span class="nav-icon">🏠</span>
 
-
-
-            <img src="logo.png" alt="Vertex Five Logo" class="sidebar-logo-img">
-
-
-
-            <div class="logo-text">
-
-
-
-                <h2>Vertex Five</h2>
-
-
-
-                <p>Hospital Intelligence</p>
-
-
-
-            </div>
-
-
-
+          <span>Overview</span>
         </a>
 
+        <a href="dashboard.html" class="side-link">
+          <span class="nav-icon">📊</span>
 
+          <span>Dashboard</span>
+        </a>
 
+        <a href="ai-insights.html" class="side-link">
+          <span class="nav-icon">🤖</span>
 
+          <span>AI Insights</span>
+        </a>
 
+        <a href="analytics.html" class="side-link">
+          <span class="nav-icon">📈</span>
 
+          <span>Analytics</span>
+        </a>
 
-        <nav class="sidebar-nav">
+        <a href="alerts.html" class="side-link">
+          <span class="nav-icon">🔔</span>
 
+          <span>Alerts</span>
+        </a>
+      </nav>
 
+      <div class="sidebar-bottom">
+        <a href="#settings" class="side-link settings-link">
+          <span class="nav-icon">⚙️</span>
 
-            <a href="overview.html" class="side-link active">
+          <span>Settings</span>
+        </a>
 
+        <a href="index.html" class="side-link">
+          <span class="nav-icon">🚪</span>
 
-
-                <span class="nav-icon">🏠</span>
-
-
-
-                <span>Overview</span>
-
-
-
-            </a>
-
-
-
-            <a href="dashboard.html" class="side-link">
-
-
-
-                <span class="nav-icon">📊</span>
-
-
-
-                <span>Dashboard</span>
-
-
-
-            </a>
-
-
-
-            <a href="ai-insights.html" class="side-link">
-
-
-
-                <span class="nav-icon">🤖</span>
-
-
-
-                <span>AI Insights</span>
-
-
-
-            </a>
-
-
-
-            <a href="analytics.html" class="side-link">
-
-
-
-                <span class="nav-icon">📈</span>
-
-
-
-                <span>Analytics</span>
-
-
-
-            </a>
-
-
-
-            <a href="alerts.html" class="side-link">
-
-
-
-                <span class="nav-icon">🔔</span>
-
-
-
-                <span>Alerts</span>
-
-
-
-            </a>
-
-
-
-        </nav>
-
-
-
-
-
-
-
-        <div class="sidebar-bottom">
-
-
-
-            <a href="#settings" class="side-link settings-link">
-
-
-
-                <span class="nav-icon">⚙️</span>
-
-
-
-                <span>Settings</span>
-
-
-
-            </a>
-
-
-
-            <a href="index.html" class="side-link">
-
-
-
-                <span class="nav-icon">🚪</span>
-
-
-
-                <span>Home</span>
-
-
-
-            </a>
-
-
-
-        </div>
-
-
-
+          <span>Home</span>
+        </a>
+      </div>
     </aside>
-
-
-
-
-
-
 
     <!-- ================= MAIN CONTENT ================= -->
 
-
-
     <main class="main-content">
+      <!-- TOP BAR -->
 
+      <header class="top-bar">
+        <div class="top-left-group">
+          <button
+            id="menuToggle"
+            class="menu-toggle-btn"
+            aria-label="Toggle Navigation"
+          >
+            ☰
+          </button>
 
+          <div class="page-heading">
+            <h1>Hospital Overview</h1>
 
-        <!-- TOP BAR -->
+            <p>
+              Executive summary of facility resources and operational vitals
+            </p>
+          </div>
+        </div>
 
+        <div class="top-right">
+          <div class="system-status">
+            <span class="status-dot"></span>
 
+            <span>System Online</span>
+          </div>
 
-        <header class="top-bar">
+          <div class="user-icon" title="Operator Profile">S</div>
+        </div>
+      </header>
 
+      <!-- ================= OVERVIEW CARDS ================= -->
 
+      <section class="overview-cards">
+        <!-- CARD 1 -->
 
-            <div class="top-left-group">
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">⚡</span>
 
+            <h3 class="overview-card-title">Current Consumption</h3>
+          </div>
 
+          <div class="overview-value">8,450 kWh</div>
 
-                <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle Navigation">
+          <p class="overview-description">
+            Current power draw across active hospital wings
+          </p>
+        </div>
 
+        <!-- CARD 2 -->
 
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">💧</span>
 
-                    ☰
+            <h3 class="overview-card-title">Water Usage</h3>
+          </div>
 
+          <div class="overview-value">10,200 L</div>
 
+          <p class="overview-description">
+            Today's total hydraulic flow consumption
+          </p>
+        </div>
 
-                </button>
+        <!-- CARD 3 -->
 
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">♻️</span>
 
+            <h3 class="overview-card-title">Waste Management</h3>
+          </div>
 
-                <div class="page-heading">
+          <div class="overview-value">72%</div>
 
+          <p class="overview-description">
+            Segregated biohazard & recyclable efficiency
+          </p>
+        </div>
 
+        <!-- CARD 4 -->
 
-                    <h1>Hospital Overview</h1>
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">☀️</span>
 
+            <h3 class="overview-card-title">Solar</h3>
+          </div>
 
+          <div class="overview-value">4,280 kWh</div>
 
-                    <p>Executive summary of facility resources and operational vitals</p>
+          <p class="overview-description">
+            Clean renewable rooftop solar output
+          </p>
+        </div>
 
+        <!-- CARD 5 -->
 
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">🛏️</span>
 
-                </div>
+            <h3 class="overview-card-title">Beds Availability</h3>
+          </div>
 
+          <div class="overview-value">32 Available</div>
 
+          <p class="overview-description">
+            Unoccupied inpatient beds ready for intake
+          </p>
+        </div>
 
+        <!-- CARD 6 -->
+
+        <div class="overview-card" title="Click to view details">
+          <div class="overview-card-top">
+            <span class="overview-icon">👩‍⚕️</span>
+
+            <h3 class="overview-card-title">Staff</h3>
+          </div>
+
+          <div class="overview-value">48 Available</div>
+
+          <p class="overview-description">
+            Medical personnel stationed across active wards
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= FACILITY STATUS SECTION ================= -->
+
+      <section class="facility-status-section">
+        <div class="ai-header" style="margin-bottom: 0">
+          <div>
+            <h2>🏥 Facility Unit Health</h2>
+
+            <p>Telemetry status of primary clinical infrastructure wings</p>
+          </div>
+        </div>
+
+        <div class="facility-grid">
+          <div class="facility-card">
+            <h3>Surgical & Intensive Care Wing</h3>
+
+            <p>
+              Autoclaves, air-exchangers, and backup UPS running at standard
+              parameters.
+            </p>
+
+            <div class="facility-status-pill">
+              <span class="status-dot"></span>
+
+              <span>Nominal Operation • 99.8% Uptime</span>
             </div>
+          </div>
 
+          <div class="facility-card">
+            <h3>Diagnostic & Research Labs</h3>
 
+            <p>
+              Cryogenic cold-chain and biological containment exhaust within
+              calibrated thresholds.
+            </p>
 
+            <div class="facility-status-pill">
+              <span class="status-dot"></span>
 
-
-
-
-            <div class="top-right">
-
-
-
-                <div class="system-status">
-
-
-
-                    <span class="status-dot"></span>
-
-
-
-                    <span>System Online</span>
-
-
-
-                </div>
-
-
-
-                <div class="user-icon" title="Operator Profile">
-
-
-
-                    S
-
-
-
-                </div>
-
-
-
+              <span>Safe Envelope • Baseline Stable</span>
             </div>
+          </div>
 
+          <div class="facility-card">
+            <h3>Central Utility & HVAC Plant</h3>
 
+            <p>
+              Chiller compressor efficiency elevated; solar inverters
+              distributing to microgrid.
+            </p>
 
-        </header>
+            <div class="facility-status-pill">
+              <span class="status-dot"></span>
 
-
-
-
-
-
-
-        <!-- ================= OVERVIEW CARDS ================= -->
-
-
-
-        <section class="overview-cards">
-
-
-
-            <!-- CARD 1 -->
-
-
-
-            <div class="overview-card" title="Click to view details">
-
-
-
-                <div class="overview-card-top">
-
-
-
-                    <span class="overview-icon">⚡</span>
-
-
-
-                    <h3 class="overview-card-title">Current Consumption</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">8,450 kWh</div>
-
-
-
-                <p class="overview-description">Current power draw across active hospital wings</p>
-
-
-
+              <span>Active Grid Integration • 50.6% Solar</span>
             </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- ================= QUICK ACCESS NAVIGATION ================= -->
 
+      <section class="facility-status-section">
+        <div class="ai-header" style="margin-bottom: 0">
+          <div>
+            <h2>⚡ Quick Access Modules</h2>
 
+            <p>Jump directly into dedicated operational views</p>
+          </div>
+        </div>
 
+        <div class="quick-grid">
+          <a href="ai-insights.html" class="quick-card">
+            <div class="quick-card-icon">🤖</div>
 
+            <h3>AI Insights</h3>
 
+            <p>
+              Explore predictive machine learning recommendations and anomaly
+              detection logs.
+            </p>
+          </a>
 
-            <!-- CARD 2 -->
+          <a href="analytics.html" class="quick-card">
+            <div class="quick-card-icon">📈</div>
 
+            <h3>Resource Analytics</h3>
 
+            <p>
+              Deep-dive into hourly energy curves, water flow trends, and
+              historic data filters.
+            </p>
+          </a>
 
-            <div class="overview-card" title="Click to view details">
+          <a href="alerts.html" class="quick-card">
+            <div class="quick-card-icon">🔔</div>
 
+            <h3>Facility Alerts</h3>
 
+            <p>
+              Review active priority warnings, maintenance schedules, and
+              threshold breaches.
+            </p>
+          </a>
+        </div>
+      </section>
 
-                <div class="overview-card-top">
+      <!-- FOOTER -->
 
+      <footer class="footer">
+        <p>© 2026 Vertex Five • Hospital Intelligence</p>
 
-
-                    <span class="overview-icon">💧</span>
-
-
-
-                    <h3 class="overview-card-title">Water Usage</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">10,200 L</div>
-
-
-
-                <p class="overview-description">Today's total hydraulic flow consumption</p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <!-- CARD 3 -->
-
-
-
-            <div class="overview-card" title="Click to view details">
-
-
-
-                <div class="overview-card-top">
-
-
-
-                    <span class="overview-icon">♻️</span>
-
-
-
-                    <h3 class="overview-card-title">Waste Management</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">72%</div>
-
-
-
-                <p class="overview-description">Segregated biohazard & recyclable efficiency</p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <!-- CARD 4 -->
-
-
-
-            <div class="overview-card" title="Click to view details">
-
-
-
-                <div class="overview-card-top">
-
-
-
-                    <span class="overview-icon">☀️</span>
-
-
-
-                    <h3 class="overview-card-title">Solar</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">4,280 kWh</div>
-
-
-
-                <p class="overview-description">Clean renewable rooftop solar output</p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <!-- CARD 5 -->
-
-
-
-            <div class="overview-card" title="Click to view details">
-
-
-
-                <div class="overview-card-top">
-
-
-
-                    <span class="overview-icon">🛏️</span>
-
-
-
-                    <h3 class="overview-card-title">Beds Availability</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">32 Available</div>
-
-
-
-                <p class="overview-description">Unoccupied inpatient beds ready for intake</p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <!-- CARD 6 -->
-
-
-
-            <div class="overview-card" title="Click to view details">
-
-
-
-                <div class="overview-card-top">
-
-
-
-                    <span class="overview-icon">👩‍⚕️</span>
-
-
-
-                    <h3 class="overview-card-title">Staff</h3>
-
-
-
-                </div>
-
-
-
-                <div class="overview-value">48 Available</div>
-
-
-
-                <p class="overview-description">Medical personnel stationed across active wards</p>
-
-
-
-            </div>
-
-
-
-        </section>
-
-
-
-
-
-
-
-        <!-- ================= FACILITY STATUS SECTION ================= -->
-
-
-
-        <section class="facility-status-section">
-
-
-
-            <div class="ai-header" style="margin-bottom: 0;">
-
-
-
-                <div>
-
-
-
-                    <h2>🏥 Facility Unit Health</h2>
-
-
-
-                    <p>Telemetry status of primary clinical infrastructure wings</p>
-
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="facility-grid">
-
-
-
-                <div class="facility-card">
-
-
-
-                    <h3>Surgical & Intensive Care Wing</h3>
-
-
-
-                    <p>Autoclaves, air-exchangers, and backup UPS running at standard parameters.</p>
-
-
-
-                    <div class="facility-status-pill">
-
-
-
-                        <span class="status-dot"></span>
-
-
-
-                        <span>Nominal Operation • 99.8% Uptime</span>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="facility-card">
-
-
-
-                    <h3>Diagnostic & Research Labs</h3>
-
-
-
-                    <p>Cryogenic cold-chain and biological containment exhaust within calibrated thresholds.</p>
-
-
-
-                    <div class="facility-status-pill">
-
-
-
-                        <span class="status-dot"></span>
-
-
-
-                        <span>Safe Envelope • Baseline Stable</span>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="facility-card">
-
-
-
-                    <h3>Central Utility & HVAC Plant</h3>
-
-
-
-                    <p>Chiller compressor efficiency elevated; solar inverters distributing to microgrid.</p>
-
-
-
-                    <div class="facility-status-pill">
-
-
-
-                        <span class="status-dot"></span>
-
-
-
-                        <span>Active Grid Integration • 50.6% Solar</span>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-        </section>
-
-
-
-
-
-
-
-        <!-- ================= QUICK ACCESS NAVIGATION ================= -->
-
-
-
-        <section class="facility-status-section">
-
-
-
-            <div class="ai-header" style="margin-bottom: 0;">
-
-
-
-                <div>
-
-
-
-                    <h2>⚡ Quick Access Modules</h2>
-
-
-
-                    <p>Jump directly into dedicated operational views</p>
-
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="quick-grid">
-
-
-
-                <a href="ai-insights.html" class="quick-card">
-
-
-
-                    <div class="quick-card-icon">🤖</div>
-
-
-
-                    <h3>AI Insights</h3>
-
-
-
-                    <p>Explore predictive machine learning recommendations and anomaly detection logs.</p>
-
-
-
-                </a>
-
-
-
-
-
-
-
-                <a href="analytics.html" class="quick-card">
-
-
-
-                    <div class="quick-card-icon">📈</div>
-
-
-
-                    <h3>Resource Analytics</h3>
-
-
-
-                    <p>Deep-dive into hourly energy curves, water flow trends, and historic data filters.</p>
-
-
-
-                </a>
-
-
-
-
-
-
-
-                <a href="alerts.html" class="quick-card">
-
-
-
-                    <div class="quick-card-icon">🔔</div>
-
-
-
-                    <h3>Facility Alerts</h3>
-
-
-
-                    <p>Review active priority warnings, maintenance schedules, and threshold breaches.</p>
-
-
-
-                </a>
-
-
-
-            </div>
-
-
-
-        </section>
-
-
-
-
-
-
-
-        <!-- FOOTER -->
-
-
-
-        <footer class="footer">
-
-
-
-            <p>© 2026 Vertex Five • Hospital Intelligence</p>
-
-
-
-            <p>Smart • Sustainable • Data-Driven Healthcare Operations</p>
-
-
-
-        </footer>
-
-
-
+        <p>Smart • Sustainable • Data-Driven Healthcare Operations</p>
+      </footer>
     </main>
-
-
-
-
-
-
 
     <!-- ================= CARD INFO POPUP MODAL ================= -->
 
-
-
     <div id="infoPopup" class="info-popup">
+      <div class="popup-box">
+        <button id="closePopup" class="close-popup">×</button>
 
+        <div id="popupIcon" class="popup-icon">💧</div>
 
+        <h2 id="popupTitle">Water Usage</h2>
 
-        <div class="popup-box">
+        <h3 id="popupValue">10,200 L</h3>
 
+        <p id="popupDescription">
+          Today's water consumption across clinical wards.
+        </p>
 
+        <div class="popup-status">
+          <strong>Status:</strong>
 
-            <button id="closePopup" class="close-popup">×</button>
-
-
-
-            <div id="popupIcon" class="popup-icon">💧</div>
-
-
-
-            <h2 id="popupTitle">Water Usage</h2>
-
-
-
-            <h3 id="popupValue">10,200 L</h3>
-
-
-
-            <p id="popupDescription">Today's water consumption across clinical wards.</p>
-
-
-
-            <div class="popup-status">
-
-
-
-                <strong>Status:</strong>
-
-
-
-                <span id="popupStatus">Normal</span>
-
-
-
-            </div>
-
-
-
-            <div class="popup-recommendation">
-
-
-
-                💡 <span id="popupRecommendation">Continue monitoring water usage.</span>
-
-
-
-            </div>
-
-
-
+          <span id="popupStatus">Normal</span>
         </div>
 
-
-
+        <div class="popup-recommendation">
+          💡
+          <span id="popupRecommendation">Continue monitoring water usage.</span>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
 
     <!-- ================= ALERT POPUP MODAL ================= -->
 
-
-
     <div id="alertPopup" class="alert-popup">
+      <div class="popup-box">
+        <button id="closeAlertPopup" class="close-popup">×</button>
 
+        <div id="alertPopupIcon" class="popup-icon">⚡</div>
 
+        <h2 id="alertPopupTitle">Facility Notification</h2>
 
-        <div class="popup-box">
+        <p id="alertPopupDescription">Telemetry detail.</p>
 
+        <div class="popup-status">
+          <strong>Priority:</strong>
 
-
-            <button id="closeAlertPopup" class="close-popup">×</button>
-
-
-
-            <div id="alertPopupIcon" class="popup-icon">⚡</div>
-
-
-
-            <h2 id="alertPopupTitle">Facility Notification</h2>
-
-
-
-            <p id="alertPopupDescription">Telemetry detail.</p>
-
-
-
-            <div class="popup-status">
-
-
-
-                <strong>Priority:</strong>
-
-
-
-                <span id="alertPopupStatus">Info</span>
-
-
-
-            </div>
-
-
-
-            <div class="popup-recommendation">
-
-
-
-                💡 <span id="alertPopupRecommendation">Check system procedures.</span>
-
-
-
-            </div>
-
-
-
+          <span id="alertPopupStatus">Info</span>
         </div>
 
-
-
+        <div class="popup-recommendation">
+          💡 <span id="alertPopupRecommendation">Check system procedures.</span>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
 
     <!-- ================= SETTINGS POPUP MODAL ================= -->
 
-
-
     <div id="settingsPopup" class="settings-popup">
+      <div class="popup-box">
+        <button id="closeSettingsPopup" class="close-popup">×</button>
 
+        <div class="popup-icon">⚙️</div>
 
+        <h2>System Preferences</h2>
 
-        <div class="popup-box">
+        <p>Configure monitoring and alerting parameters.</p>
 
+        <div class="settings-options">
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>High-Contrast Dark Theme</h4>
 
-
-            <button id="closeSettingsPopup" class="close-popup">×</button>
-
-
-
-            <div class="popup-icon">⚙️</div>
-
-
-
-            <h2>System Preferences</h2>
-
-
-
-            <p>Configure monitoring and alerting parameters.</p>
-
-
-
-
-
-
-
-            <div class="settings-options">
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>High-Contrast Dark Theme</h4>
-
-
-
-                        <p>Optimized for low-light clinical control rooms</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox" checked>
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>Real-Time Sensor Sync</h4>
-
-
-
-                        <p>Stream telemetry at 5-second polling intervals</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox" checked>
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>Audio Alert Chimes</h4>
-
-
-
-                        <p>Play acoustic notification for Critical priority alerts</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox">
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
+              <p>Optimized for low-light clinical control rooms</p>
             </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
 
+              <span class="slider"></span>
+            </label>
+          </div>
 
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>Real-Time Sensor Sync</h4>
 
+              <p>Stream telemetry at 5-second polling intervals</p>
+            </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
 
+              <span class="slider"></span>
+            </label>
+          </div>
 
-            <button class="btn-primary" onclick="document.getElementById('settingsPopup').classList.remove('show');" style="width: 100%; justify-content: center; padding: 11px;">
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>Audio Alert Chimes</h4>
 
+              <p>Play acoustic notification for Critical priority alerts</p>
+            </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" />
 
-                Save & Apply Settings
-
-
-
-            </button>
-
-
-
+              <span class="slider"></span>
+            </label>
+          </div>
         </div>
 
-
-
+        <button
+          class="btn-primary"
+          onclick="
+            document.getElementById('settingsPopup').classList.remove('show')
+          "
+          style="width: 100%; justify-content: center; padding: 11px"
+        >
+          Save & Apply Settings
+        </button>
+      </div>
     </div>
 
-
-
-
-
-
-
     <script src="stp.js" charset="UTF-8"></script>
-
-
-
-    
-
-
-
-</body>
-
-
-
+  </body>
 </html>
-
-
-

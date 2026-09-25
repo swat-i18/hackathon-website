@@ -1,1048 +1,378 @@
-﻿<!DOCTYPE html>
-
-
+<!doctype html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-
-
-<head>
-
-
-
-    <meta charset="UTF-8">
-
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Alerts | Vertex Five Hospital Intelligence</title>
 
+    <link rel="stylesheet" href="sub.css" />
+  </head>
 
-
-    <link rel="stylesheet" href="sub.css">
-
-
-
-</head>
-
-
-
-<body class="app-layout">
-
-
-
-
-
-
-
+  <body class="app-layout">
     <div class="sidebar-overlay"></div>
-
-
-
-
-
-
 
     <!-- ================= SIDEBAR ================= -->
 
-
-
     <aside class="sidebar">
+      <a href="index.html" class="logo-area">
+        <img src="logo.png" alt="Vertex Five Logo" class="sidebar-logo-img" />
 
+        <div class="logo-text">
+          <h2>Vertex Five</h2>
 
+          <p>Hospital Intelligence</p>
+        </div>
+      </a>
 
-        <a href="index.html" class="logo-area">
+      <nav class="sidebar-nav">
+        <a href="overview.html" class="side-link">
+          <span class="nav-icon">🏠</span>
 
-
-
-            <img src="logo.png" alt="Vertex Five Logo" class="sidebar-logo-img">
-
-
-
-            <div class="logo-text">
-
-
-
-                <h2>Vertex Five</h2>
-
-
-
-                <p>Hospital Intelligence</p>
-
-
-
-            </div>
-
-
-
+          <span>Overview</span>
         </a>
 
+        <a href="dashboard.html" class="side-link">
+          <span class="nav-icon">📊</span>
 
+          <span>Dashboard</span>
+        </a>
 
+        <a href="ai-insights.html" class="side-link">
+          <span class="nav-icon">🤖</span>
 
+          <span>AI Insights</span>
+        </a>
 
+        <a href="analytics.html" class="side-link">
+          <span class="nav-icon">📈</span>
 
+          <span>Analytics</span>
+        </a>
 
-        <nav class="sidebar-nav">
+        <a href="alerts.html" class="side-link active">
+          <span class="nav-icon">🔔</span>
 
+          <span>Alerts</span>
+        </a>
+      </nav>
 
+      <div class="sidebar-bottom">
+        <a href="#settings" class="side-link settings-link">
+          <span class="nav-icon">⚙️</span>
 
-            <a href="overview.html" class="side-link">
+          <span>Settings</span>
+        </a>
 
+        <a href="index.html" class="side-link">
+          <span class="nav-icon">🚪</span>
 
-
-                <span class="nav-icon">🏠</span>
-
-
-
-                <span>Overview</span>
-
-
-
-            </a>
-
-
-
-            <a href="dashboard.html" class="side-link">
-
-
-
-                <span class="nav-icon">📊</span>
-
-
-
-                <span>Dashboard</span>
-
-
-
-            </a>
-
-
-
-            <a href="ai-insights.html" class="side-link">
-
-
-
-                <span class="nav-icon">🤖</span>
-
-
-
-                <span>AI Insights</span>
-
-
-
-            </a>
-
-
-
-            <a href="analytics.html" class="side-link">
-
-
-
-                <span class="nav-icon">📈</span>
-
-
-
-                <span>Analytics</span>
-
-
-
-            </a>
-
-
-
-            <a href="alerts.html" class="side-link active">
-
-
-
-                <span class="nav-icon">🔔</span>
-
-
-
-                <span>Alerts</span>
-
-
-
-            </a>
-
-
-
-        </nav>
-
-
-
-
-
-
-
-        <div class="sidebar-bottom">
-
-
-
-            <a href="#settings" class="side-link settings-link">
-
-
-
-                <span class="nav-icon">⚙️</span>
-
-
-
-                <span>Settings</span>
-
-
-
-            </a>
-
-
-
-            <a href="index.html" class="side-link">
-
-
-
-                <span class="nav-icon">🚪</span>
-
-
-
-                <span>Home</span>
-
-
-
-            </a>
-
-
-
-        </div>
-
-
-
+          <span>Home</span>
+        </a>
+      </div>
     </aside>
-
-
-
-
-
-
 
     <!-- ================= MAIN CONTENT ================= -->
 
-
-
     <main class="main-content">
+      <!-- TOP BAR -->
 
+      <header class="top-bar">
+        <div class="top-left-group">
+          <button
+            id="menuToggle"
+            class="menu-toggle-btn"
+            aria-label="Toggle Navigation"
+          >
+            ☰
+          </button>
 
+          <div class="page-heading">
+            <h1>Facility Alerts & Incidents</h1>
 
-        <!-- TOP BAR -->
+            <p>Real-time infrastructure warnings and threshold breaches</p>
+          </div>
+        </div>
 
+        <div class="top-right">
+          <div class="system-status">
+            <span class="status-dot"></span>
 
+            <span>Monitoring Active • 3 Notices</span>
+          </div>
 
-        <header class="top-bar">
+          <div class="user-icon" title="Operator Profile">S</div>
+        </div>
+      </header>
 
+      <!-- ================= ACTIVE ALERTS LIST ================= -->
 
+      <section class="alerts-section">
+        <div class="alerts-heading">
+          <div>
+            <h2>🔔 Active Facility Notifications</h2>
 
-            <div class="top-left-group">
+            <p>
+              Select any alert item to inspect root-cause telemetry and dispatch
+              directives
+            </p>
+          </div>
 
+          <span class="alert-count-badge">3 Requiring Review</span>
+        </div>
 
+        <div class="alerts-list">
+          <!-- ALERT 1 -->
 
-                <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle Navigation">
+          <div class="alert-item warning" title="Click to view details">
+            <div class="alert-icon">⚡</div>
 
+            <div class="alert-content">
+              <h3>High Energy Consumption</h3>
 
+              <p>
+                Electrical draw in Surgical Wing B has spiked 18% above typical
+                morning baseline.
+              </p>
 
-                    ☰
-
-
-
-                </button>
-
-
-
-                <div class="page-heading">
-
-
-
-                    <h1>Facility Alerts & Incidents</h1>
-
-
-
-                    <p>Real-time infrastructure warnings and threshold breaches</p>
-
-
-
-                </div>
-
-
-
+              <span
+                >Recommended Directive: Inspect sterilization autoclave cycles
+                and HVAC dampers.</span
+              >
             </div>
 
+            <span class="alert-time">10 min ago</span>
+          </div>
 
+          <!-- ALERT 2 -->
 
+          <div class="alert-item info" title="Click to view details">
+            <div class="alert-icon">💧</div>
 
+            <div class="alert-content">
+              <h3>Water Usage Monitoring</h3>
 
+              <p>
+                Continuous hydraulic flow of 45 L/min detected overnight in
+                level 2 lab loop.
+              </p>
 
-
-            <div class="top-right">
-
-
-
-                <div class="system-status">
-
-
-
-                    <span class="status-dot"></span>
-
-
-
-                    <span>Monitoring Active • 3 Notices</span>
-
-
-
-                </div>
-
-
-
-                <div class="user-icon" title="Operator Profile">
-
-
-
-                    S
-
-
-
-                </div>
-
-
-
+              <span
+                >Recommended Directive: Inspect valve seals and acoustic leak
+                telemetry.</span
+              >
             </div>
 
+            <span class="alert-time">25 min ago</span>
+          </div>
 
+          <!-- ALERT 3 -->
 
-        </header>
+          <div class="alert-item critical" title="Click to view details">
+            <div class="alert-icon">🛏️</div>
 
+            <div class="alert-content">
+              <h3>Bed Availability</h3>
 
+              <p>
+                Surgical recovery bed occupancy reached 82% ahead of scheduled
+                weekend admissions.
+              </p>
 
-
-
-
-
-        <!-- ================= ACTIVE ALERTS LIST ================= -->
-
-
-
-        <section class="alerts-section">
-
-
-
-            <div class="alerts-heading">
-
-
-
-                <div>
-
-
-
-                    <h2>🔔 Active Facility Notifications</h2>
-
-
-
-                    <p>Select any alert item to inspect root-cause telemetry and dispatch directives</p>
-
-
-
-                </div>
-
-
-
-                <span class="alert-count-badge">3 Requiring Review</span>
-
-
-
+              <span
+                >Recommended Directive: Expedite discharge reviews and prepare
+                overflow beds.</span
+              >
             </div>
 
+            <span class="alert-time">40 min ago</span>
+          </div>
+        </div>
+      </section>
 
+      <!-- ================= ALERT CATEGORIES ================= -->
 
+      <section class="ai-section">
+        <div class="ai-heading">
+          <div>
+            <h2>📋 Alert Incident Categories</h2>
 
+            <p>Summary of open notices by infrastructure domain</p>
+          </div>
+        </div>
 
+        <div class="cards-grid" style="margin-bottom: 0">
+          <div class="card" title="Click to view details">
+            <div class="card-icon">⚡</div>
 
+            <div class="card-content">
+              <h3>Energy</h3>
 
-            <div class="alerts-list">
+              <h2>1 Active</h2>
 
-
-
-                <!-- ALERT 1 -->
-
-
-
-                <div class="alert-item warning" title="Click to view details">
-
-
-
-                    <div class="alert-icon">⚡</div>
-
-
-
-                    <div class="alert-content">
-
-
-
-                        <h3>High Energy Consumption</h3>
-
-
-
-                        <p>Electrical draw in Surgical Wing B has spiked 18% above typical morning baseline.</p>
-
-
-
-                        <span>Recommended Directive: Inspect sterilization autoclave cycles and HVAC dampers.</span>
-
-
-
-                    </div>
-
-
-
-                    <span class="alert-time">10 min ago</span>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <!-- ALERT 2 -->
-
-
-
-                <div class="alert-item info" title="Click to view details">
-
-
-
-                    <div class="alert-icon">💧</div>
-
-
-
-                    <div class="alert-content">
-
-
-
-                        <h3>Water Usage Monitoring</h3>
-
-
-
-                        <p>Continuous hydraulic flow of 45 L/min detected overnight in level 2 lab loop.</p>
-
-
-
-                        <span>Recommended Directive: Inspect valve seals and acoustic leak telemetry.</span>
-
-
-
-                    </div>
-
-
-
-                    <span class="alert-time">25 min ago</span>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <!-- ALERT 3 -->
-
-
-
-                <div class="alert-item critical" title="Click to view details">
-
-
-
-                    <div class="alert-icon">🛏️</div>
-
-
-
-                    <div class="alert-content">
-
-
-
-                        <h3>Bed Availability</h3>
-
-
-
-                        <p>Surgical recovery bed occupancy reached 82% ahead of scheduled weekend admissions.</p>
-
-
-
-                        <span>Recommended Directive: Expedite discharge reviews and prepare overflow beds.</span>
-
-
-
-                    </div>
-
-
-
-                    <span class="alert-time">40 min ago</span>
-
-
-
-                </div>
-
-
-
+              <p>Diagnostic imaging autoclave peak load</p>
             </div>
+          </div>
 
+          <div class="card" title="Click to view details">
+            <div class="card-icon">💧</div>
 
+            <div class="card-content">
+              <h3>Water</h3>
 
-        </section>
+              <h2>1 Active</h2>
 
-
-
-
-
-
-
-        <!-- ================= ALERT CATEGORIES ================= -->
-
-
-
-        <section class="ai-section">
-
-
-
-            <div class="ai-heading">
-
-
-
-                <div>
-
-
-
-                    <h2>📋 Alert Incident Categories</h2>
-
-
-
-                    <p>Summary of open notices by infrastructure domain</p>
-
-
-
-                </div>
-
-
-
+              <p>Secondary lab return loop flow variance</p>
             </div>
+          </div>
 
+          <div class="card" title="Click to view details">
+            <div class="card-icon">🛏️</div>
 
+            <div class="card-content">
+              <h3>Beds</h3>
 
+              <h2>1 Active</h2>
 
-
-
-
-            <div class="cards-grid" style="margin-bottom: 0;">
-
-
-
-                <div class="card" title="Click to view details">
-
-
-
-                    <div class="card-icon">⚡</div>
-
-
-
-                    <div class="card-content">
-
-
-
-                        <h3>Energy</h3>
-
-
-
-                        <h2>1 Active</h2>
-
-
-
-                        <p>Diagnostic imaging autoclave peak load</p>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="card" title="Click to view details">
-
-
-
-                    <div class="card-icon">💧</div>
-
-
-
-                    <div class="card-content">
-
-
-
-                        <h3>Water</h3>
-
-
-
-                        <h2>1 Active</h2>
-
-
-
-                        <p>Secondary lab return loop flow variance</p>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="card" title="Click to view details">
-
-
-
-                    <div class="card-icon">🛏️</div>
-
-
-
-                    <div class="card-content">
-
-
-
-                        <h3>Beds</h3>
-
-
-
-                        <h2>1 Active</h2>
-
-
-
-                        <p>Post-operative bed capacity buffer</p>
-
-
-
-                    </div>
-
-
-
-                </div>
-
-
-
+              <p>Post-operative bed capacity buffer</p>
             </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- FOOTER -->
 
+      <footer class="footer">
+        <p>© 2026 Vertex Five • Hospital Intelligence</p>
 
-        </section>
-
-
-
-
-
-
-
-        <!-- FOOTER -->
-
-
-
-        <footer class="footer">
-
-
-
-            <p>© 2026 Vertex Five • Hospital Intelligence</p>
-
-
-
-            <p>Smart • Sustainable • Data-Driven Healthcare Operations</p>
-
-
-
-        </footer>
-
-
-
+        <p>Smart • Sustainable • Data-Driven Healthcare Operations</p>
+      </footer>
     </main>
-
-
-
-
-
-
 
     <!-- ================= CARD INFO POPUP MODAL ================= -->
 
-
-
     <div id="infoPopup" class="info-popup">
+      <div class="popup-box">
+        <button id="closePopup" class="close-popup">×</button>
 
+        <div id="popupIcon" class="popup-icon">📋</div>
 
+        <h2 id="popupTitle">Alert Detail</h2>
 
-        <div class="popup-box">
+        <h3 id="popupValue">1 Active</h3>
 
+        <p id="popupDescription">Incident categorization detail.</p>
 
+        <div class="popup-status">
+          <strong>Status:</strong>
 
-            <button id="closePopup" class="close-popup">×</button>
-
-
-
-            <div id="popupIcon" class="popup-icon">📋</div>
-
-
-
-            <h2 id="popupTitle">Alert Detail</h2>
-
-
-
-            <h3 id="popupValue">1 Active</h3>
-
-
-
-            <p id="popupDescription">Incident categorization detail.</p>
-
-
-
-            <div class="popup-status">
-
-
-
-                <strong>Status:</strong>
-
-
-
-                <span id="popupStatus">Logged</span>
-
-
-
-            </div>
-
-
-
-            <div class="popup-recommendation">
-
-
-
-                💡 <span id="popupRecommendation">Follow standard triage workflow.</span>
-
-
-
-            </div>
-
-
-
+          <span id="popupStatus">Logged</span>
         </div>
 
-
-
+        <div class="popup-recommendation">
+          💡
+          <span id="popupRecommendation">Follow standard triage workflow.</span>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
 
     <!-- ================= ALERT POPUP MODAL ================= -->
 
-
-
     <div id="alertPopup" class="alert-popup">
+      <div class="popup-box">
+        <button id="closeAlertPopup" class="close-popup">×</button>
 
+        <div id="alertPopupIcon" class="popup-icon">⚡</div>
 
+        <h2 id="alertPopupTitle">Alert Directive</h2>
 
-        <div class="popup-box">
+        <p id="alertPopupDescription">Incident description.</p>
 
+        <div class="popup-status">
+          <strong>Priority:</strong>
 
-
-            <button id="closeAlertPopup" class="close-popup">×</button>
-
-
-
-            <div id="alertPopupIcon" class="popup-icon">⚡</div>
-
-
-
-            <h2 id="alertPopupTitle">Alert Directive</h2>
-
-
-
-            <p id="alertPopupDescription">Incident description.</p>
-
-
-
-            <div class="popup-status">
-
-
-
-                <strong>Priority:</strong>
-
-
-
-                <span id="alertPopupStatus">Attention</span>
-
-
-
-            </div>
-
-
-
-            <div class="popup-recommendation">
-
-
-
-                💡 <span id="alertPopupRecommendation">Verify equipment status with unit supervisor.</span>
-
-
-
-            </div>
-
-
-
+          <span id="alertPopupStatus">Attention</span>
         </div>
 
-
-
+        <div class="popup-recommendation">
+          💡
+          <span id="alertPopupRecommendation"
+            >Verify equipment status with unit supervisor.</span
+          >
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
 
     <!-- ================= SETTINGS POPUP MODAL ================= -->
 
-
-
     <div id="settingsPopup" class="settings-popup">
+      <div class="popup-box">
+        <button id="closeSettingsPopup" class="close-popup">×</button>
 
+        <div class="popup-icon">⚙️</div>
 
+        <h2>System Preferences</h2>
 
-        <div class="popup-box">
+        <p>Configure monitoring and alerting parameters.</p>
 
+        <div class="settings-options">
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>High-Contrast Dark Theme</h4>
 
-
-            <button id="closeSettingsPopup" class="close-popup">×</button>
-
-
-
-            <div class="popup-icon">⚙️</div>
-
-
-
-            <h2>System Preferences</h2>
-
-
-
-            <p>Configure monitoring and alerting parameters.</p>
-
-
-
-
-
-
-
-            <div class="settings-options">
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>High-Contrast Dark Theme</h4>
-
-
-
-                        <p>Optimized for low-light clinical control rooms</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox" checked>
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>Real-Time Sensor Sync</h4>
-
-
-
-                        <p>Stream telemetry at 5-second polling intervals</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox" checked>
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="setting-row">
-
-
-
-                    <div class="setting-info">
-
-
-
-                        <h4>Audio Alert Chimes</h4>
-
-
-
-                        <p>Play acoustic notification for Critical priority alerts</p>
-
-
-
-                    </div>
-
-
-
-                    <label class="toggle-switch">
-
-
-
-                        <input type="checkbox">
-
-
-
-                        <span class="slider"></span>
-
-
-
-                    </label>
-
-
-
-                </div>
-
-
-
+              <p>Optimized for low-light clinical control rooms</p>
             </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
 
+              <span class="slider"></span>
+            </label>
+          </div>
 
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>Real-Time Sensor Sync</h4>
 
+              <p>Stream telemetry at 5-second polling intervals</p>
+            </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
 
+              <span class="slider"></span>
+            </label>
+          </div>
 
-            <button class="btn-primary" onclick="document.getElementById('settingsPopup').classList.remove('show');" style="width: 100%; justify-content: center; padding: 11px;">
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>Audio Alert Chimes</h4>
 
+              <p>Play acoustic notification for Critical priority alerts</p>
+            </div>
 
+            <label class="toggle-switch">
+              <input type="checkbox" />
 
-                Save & Apply Settings
-
-
-
-            </button>
-
-
-
+              <span class="slider"></span>
+            </label>
+          </div>
         </div>
 
-
-
+        <button
+          class="btn-primary"
+          onclick="
+            document.getElementById('settingsPopup').classList.remove('show')
+          "
+          style="width: 100%; justify-content: center; padding: 11px"
+        >
+          Save & Apply Settings
+        </button>
+      </div>
     </div>
 
-
-
-
-
-
-
     <script src="stp.js" charset="UTF-8"></script>
-
-
-
-    
-
-
-
-</body>
-
-
-
+  </body>
 </html>
-
-
-
