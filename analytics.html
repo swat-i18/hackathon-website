@@ -1,294 +1,1180 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+
+
+
 <html lang="en">
+
+
+
 <head>
+
+
+
     <meta charset="UTF-8">
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
     <title>Analytics | Vertex Five Hospital Intelligence</title>
+
+
+
     <link rel="stylesheet" href="sub.css">
+
+
+
 </head>
+
+
+
 <body class="app-layout">
+
+
+
+
+
+
 
     <div class="sidebar-overlay"></div>
 
+
+
+
+
+
+
     <!-- ================= SIDEBAR ================= -->
+
+
+
     <aside class="sidebar">
+
+
+
         <a href="index.html" class="logo-area">
+
+
+
             <img src="logo.png" alt="Vertex Five Logo" class="sidebar-logo-img">
+
+
+
             <div class="logo-text">
+
+
+
                 <h2>Vertex Five</h2>
+
+
+
                 <p>Hospital Intelligence</p>
+
+
+
             </div>
+
+
+
         </a>
 
+
+
+
+
+
+
         <nav class="sidebar-nav">
+
+
+
             <a href="overview.html" class="side-link">
+
+
+
                 <span class="nav-icon">🏠</span>
+
+
+
                 <span>Overview</span>
+
+
+
             </a>
+
+
+
             <a href="dashboard.html" class="side-link">
+
+
+
                 <span class="nav-icon">📊</span>
+
+
+
                 <span>Dashboard</span>
+
+
+
             </a>
+
+
+
             <a href="ai-insights.html" class="side-link">
+
+
+
                 <span class="nav-icon">🤖</span>
+
+
+
                 <span>AI Insights</span>
+
+
+
             </a>
+
+
+
             <a href="analytics.html" class="side-link active">
+
+
+
                 <span class="nav-icon">📈</span>
+
+
+
                 <span>Analytics</span>
+
+
+
             </a>
+
+
+
             <a href="alerts.html" class="side-link">
+
+
+
                 <span class="nav-icon">🔔</span>
+
+
+
                 <span>Alerts</span>
+
+
+
             </a>
+
+
+
         </nav>
 
+
+
+
+
+
+
         <div class="sidebar-bottom">
+
+
+
             <a href="#settings" class="side-link settings-link">
+
+
+
                 <span class="nav-icon">⚙️</span>
+
+
+
                 <span>Settings</span>
+
+
+
             </a>
+
+
+
             <a href="index.html" class="side-link">
+
+
+
                 <span class="nav-icon">🚪</span>
+
+
+
                 <span>Home</span>
+
+
+
             </a>
+
+
+
         </div>
+
+
+
     </aside>
 
+
+
+
+
+
+
     <!-- ================= MAIN CONTENT ================= -->
+
+
+
     <main class="main-content">
+
+
+
         <!-- TOP BAR -->
+
+
+
         <header class="top-bar">
+
+
+
             <div class="top-left-group">
+
+
+
                 <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle Navigation">
+
+
+
                     ☰
+
+
+
                 </button>
+
+
+
                 <div class="page-heading">
+
+
+
                     <h1>Resource Analytics</h1>
+
+
+
                     <p>Granular historical trends and consumption patterns</p>
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
+
+
+
 
             <div class="top-right">
+
+
+
                 <div class="system-status">
+
+
+
                     <span class="status-dot"></span>
+
+
+
                     <span>Sensors Streaming • Live</span>
+
+
+
                 </div>
+
+
+
                 <div class="user-icon" title="Operator Profile">
+
+
+
                     S
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
         </header>
 
+
+
+
+
+
+
         <!-- ================= CHARTS SECTION ================= -->
+
+
+
         <section class="analytics-section">
+
+
+
             <div class="analytics-heading">
+
+
+
                 <div>
+
+
+
                     <h2>📊 Resource Consumption Curves</h2>
+
+
+
                     <p>Filter data across daily, weekly, and monthly operational intervals</p>
+
+
+
                 </div>
+
+
+
+
+
+
 
                 <select class="time-select" aria-label="Select timeframe filter">
+
+
+
                     <option value="Today">Today</option>
+
+
+
                     <option value="This Week">This Week</option>
+
+
+
                     <option value="This Month">This Month</option>
+
+
+
                 </select>
+
+
+
             </div>
+
+
+
+
+
+
 
             <div class="analytics-grid">
+
+
+
                 <!-- ENERGY CHART -->
+
+
+
                 <div class="chart-card">
+
+
+
                     <h3>⚡ Energy Consumption</h3>
+
+
+
                     <p class="chart-subtitle">Hourly power demand across clinical facilities</p>
+
+
+
                     <div class="chart">
+
+
+
                         <div class="bar" style="height:35%" title="6AM: 35%"><span>6AM</span></div>
+
+
+
                         <div class="bar" style="height:50%" title="9AM: 50%"><span>9AM</span></div>
+
+
+
                         <div class="bar" style="height:70%" title="12PM: 70%"><span>12PM</span></div>
+
+
+
                         <div class="bar" style="height:85%" title="3PM: 85%"><span>3PM</span></div>
+
+
+
                         <div class="bar" style="height:65%" title="6PM: 65%"><span>6PM</span></div>
+
+
+
                         <div class="bar" style="height:45%" title="9PM: 45%"><span>9PM</span></div>
+
+
+
                     </div>
+
+
+
                 </div>
+
+
+
+
+
+
 
                 <!-- WATER CHART -->
+
+
+
                 <div class="chart-card">
+
+
+
                     <h3>💧 Water Usage</h3>
+
+
+
                     <p class="chart-subtitle">Hydraulic flow volume through main clinical meters</p>
+
+
+
                     <div class="chart">
+
+
+
                         <div class="bar water-bar" style="height:30%" title="6AM: 30%"><span>6AM</span></div>
+
+
+
                         <div class="bar water-bar" style="height:45%" title="9AM: 45%"><span>9AM</span></div>
+
+
+
                         <div class="bar water-bar" style="height:60%" title="12PM: 60%"><span>12PM</span></div>
+
+
+
                         <div class="bar water-bar" style="height:75%" title="3PM: 75%"><span>3PM</span></div>
+
+
+
                         <div class="bar water-bar" style="height:55%" title="6PM: 55%"><span>6PM</span></div>
+
+
+
                         <div class="bar water-bar" style="height:40%" title="9PM: 40%"><span>9PM</span></div>
+
+
+
                     </div>
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
         </section>
+
+
+
+
+
+
 
         <!-- ================= METRIC BREAKDOWN CARDS ================= -->
+
+
+
         <section class="cards-grid">
+
+
+
             <div class="card" title="Click to view details">
+
+
+
                 <div class="card-icon">☀️</div>
+
+
+
                 <div class="card-content">
+
+
+
                     <h3>Solar</h3>
+
+
+
                     <h2>4,280 kWh</h2>
+
+
+
                     <p>Clean rooftop energy generated</p>
+
+
+
                 </div>
+
+
+
             </div>
 
+
+
+
+
+
+
             <div class="card" title="Click to view details">
+
+
+
                 <div class="card-icon">⚡</div>
+
+
+
                 <div class="card-content">
+
+
+
                     <h3>Current Consumption</h3>
+
+
+
                     <h2>8,450 kWh</h2>
+
+
+
                     <p>Current power consumption</p>
+
+
+
                 </div>
+
+
+
             </div>
 
+
+
+
+
+
+
             <div class="card" title="Click to view details">
+
+
+
                 <div class="card-icon">💧</div>
+
+
+
                 <div class="card-content">
+
+
+
                     <h3>Water Usage</h3>
+
+
+
                     <h2>10,200 L</h2>
+
+
+
                     <p>Current daily hydraulic flow</p>
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
         </section>
+
+
+
+
+
+
 
         <!-- ================= RECENT TELEMETRY EVENTS ================= -->
+
+
+
         <section class="alerts-section">
+
+
+
             <div class="alerts-heading">
+
+
+
                 <div>
+
+
+
                     <h2>📋 Telemetry Event Log</h2>
+
+
+
                     <p>Significant consumption variances logged in the last 24 hours</p>
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
+
+
+
 
             <div class="alerts-list">
+
+
+
                 <div class="alert-item warning" title="Click to view details">
+
+
+
                     <div class="alert-icon">⚡</div>
+
+
+
                     <div class="alert-content">
+
+
+
                         <h3>High Energy Consumption</h3>
+
+
+
                         <p>Elevated 85% peak recorded at 3:00 PM coinciding with surgical autoclave cycles.</p>
+
+
+
                         <span>Status: Verified Clinical Load</span>
+
+
+
                     </div>
+
+
+
                     <span class="alert-time">3:12 PM</span>
+
+
+
                 </div>
 
+
+
+
+
+
+
                 <div class="alert-item info" title="Click to view details">
+
+
+
                     <div class="alert-icon">☀️</div>
+
+
+
                     <div class="alert-content">
+
+
+
                         <h3>Solar Contribution</h3>
+
+
+
                         <p>Solar inverters reached 100% capacity rating supplying 50.6% of hospital daytime energy.</p>
+
+
+
                         <span>Status: Microgrid Active</span>
+
+
+
                     </div>
+
+
+
                     <span class="alert-time">1:45 PM</span>
+
+
+
                 </div>
 
+
+
+
+
+
+
                 <div class="alert-item info" title="Click to view details">
+
+
+
                     <div class="alert-icon">💧</div>
+
+
+
                     <div class="alert-content">
+
+
+
                         <h3>Water Usage Monitoring</h3>
+
+
+
                         <p>Pressure regulation valves adjusted in cooling tower circuit; flow rate normalized.</p>
+
+
+
                         <span>Status: Stable Baseline</span>
+
+
+
                     </div>
+
+
+
                     <span class="alert-time">11:20 AM</span>
+
+
+
                 </div>
+
+
+
             </div>
+
+
+
         </section>
 
+
+
+
+
+
+
         <!-- FOOTER -->
+
+
+
         <footer class="footer">
+
+
+
             <p>© 2026 Vertex Five • Hospital Intelligence</p>
+
+
+
             <p>Smart • Sustainable • Data-Driven Healthcare Operations</p>
+
+
+
         </footer>
+
+
+
     </main>
 
+
+
+
+
+
+
     <!-- ================= CARD INFO POPUP MODAL ================= -->
+
+
+
     <div id="infoPopup" class="info-popup">
+
+
+
         <div class="popup-box">
+
+
+
             <button id="closePopup" class="close-popup">×</button>
+
+
+
             <div id="popupIcon" class="popup-icon">📈</div>
+
+
+
             <h2 id="popupTitle">Analytics Metric</h2>
+
+
+
             <h3 id="popupValue">8,450 kWh</h3>
+
+
+
             <p id="popupDescription">Detailed resource measurement.</p>
+
+
+
             <div class="popup-status">
+
+
+
                 <strong>Status:</strong>
+
+
+
                 <span id="popupStatus">Operational</span>
+
+
+
             </div>
+
+
+
             <div class="popup-recommendation">
+
+
+
                 💡 <span id="popupRecommendation">Sensor calibration within tolerances.</span>
+
+
+
             </div>
+
+
+
         </div>
+
+
+
     </div>
+
+
+
+
+
+
 
     <!-- ================= ALERT POPUP MODAL ================= -->
+
+
+
     <div id="alertPopup" class="alert-popup">
+
+
+
         <div class="popup-box">
+
+
+
             <button id="closeAlertPopup" class="close-popup">×</button>
+
+
+
             <div id="alertPopupIcon" class="popup-icon">⚡</div>
+
+
+
             <h2 id="alertPopupTitle">Telemetry Notice</h2>
+
+
+
             <p id="alertPopupDescription">Telemetry detail.</p>
+
+
+
             <div class="popup-status">
+
+
+
                 <strong>Priority:</strong>
+
+
+
                 <span id="alertPopupStatus">Logged</span>
+
+
+
             </div>
+
+
+
             <div class="popup-recommendation">
+
+
+
                 💡 <span id="alertPopupRecommendation">Operational parameters confirmed.</span>
+
+
+
             </div>
+
+
+
         </div>
+
+
+
     </div>
+
+
+
+
+
+
 
     <!-- ================= SETTINGS POPUP MODAL ================= -->
+
+
+
     <div id="settingsPopup" class="settings-popup">
+
+
+
         <div class="popup-box">
+
+
+
             <button id="closeSettingsPopup" class="close-popup">×</button>
+
+
+
             <div id="popupIcon">⚙️</div>
+
+
+
             <h2>System Preferences</h2>
+
+
+
             <p>Configure monitoring and alerting parameters.</p>
 
+
+
+
+
+
+
             <div class="settings-options">
+
+
+
                 <div class="setting-row">
+
+
+
                     <div class="setting-info">
+
+
+
                         <h4>High-Contrast Dark Theme</h4>
+
+
+
                         <p>Optimized for low-light clinical control rooms</p>
+
+
+
                     </div>
+
+
+
                     <label class="toggle-switch">
+
+
+
                         <input type="checkbox" checked>
+
+
+
                         <span class="slider"></span>
+
+
+
                     </label>
+
+
+
                 </div>
 
+
+
+
+
+
+
                 <div class="setting-row">
+
+
+
                     <div class="setting-info">
+
+
+
                         <h4>Real-Time Sensor Sync</h4>
+
+
+
                         <p>Stream telemetry at 5-second polling intervals</p>
+
+
+
                     </div>
+
+
+
                     <label class="toggle-switch">
+
+
+
                         <input type="checkbox" checked>
+
+
+
                         <span class="slider"></span>
+
+
+
                     </label>
+
+
+
                 </div>
 
+
+
+
+
+
+
                 <div class="setting-row">
+
+
+
                     <div class="setting-info">
+
+
+
                         <h4>Audio Alert Chimes</h4>
+
+
+
                         <p>Play acoustic notification for Critical priority alerts</p>
+
+
+
                     </div>
+
+
+
                     <label class="toggle-switch">
+
+
+
                         <input type="checkbox">
+
+
+
                         <span class="slider"></span>
+
+
+
                     </label>
+
+
+
                 </div>
+
+
+
             </div>
 
+
+
+
+
+
+
             <button class="btn-primary" onclick="document.getElementById('settingsPopup').classList.remove('show');" style="width: 100%; justify-content: center; padding: 11px;">
+
+
+
                 Save & Apply Settings
+
+
+
             </button>
+
+
+
         </div>
+
+
+
     </div>
 
-    <script src="stp.js"></script>
+
+
+
+
+
+
+    <script src="stp.js" charset="UTF-8"></script>
+
+
+
+    
+
+
+
 </body>
+
+
+
 </html>
+
+
+
