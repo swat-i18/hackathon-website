@@ -31,6 +31,16 @@ app.get('/api/alerts/active', async (req, res) => {
   res.json(data || []);
 });
 
+
+app.put('/api/alerts/:id/resolve', async (req, res) => {
+  const db = await connectDb();
+  await db.run(
+    'UPDATE alerts SET status = "resolved" WHERE id = ?',
+    [req.params.id]
+  );
+  res.json({ success: true });
+});
+
 app.get('/api/alerts/resolved', async (req, res) => {
   const db = await connectDb();
   const data = await db.all(

@@ -702,6 +702,7 @@ async function fetchDashboardData() {
     
     hideError();
 
+    window.previousMetrics = window.previousMetrics || {};
     const metricsMap = {
       "Current Consumption": `${data.energy.currentConsumption} ${data.energy.unit}`,
       "Water Usage": `${data.water.usage} ${data.water.unit}`,
@@ -717,7 +718,14 @@ async function fetchDashboardData() {
       const h3 = content.querySelector("h3");
       const h2 = content.querySelector("h2");
       if (h3 && h2 && metricsMap[h3.innerText.trim()] !== undefined) {
-        h2.innerText = metricsMap[h3.innerText.trim()];
+        const newValue = metricsMap[h3.innerText.trim()];
+        if (window.previousMetrics[h3.innerText.trim()] && window.previousMetrics[h3.innerText.trim()] !== newValue) {
+            content.closest('.card').classList.remove('flash-update');
+            void content.closest('.card').offsetWidth;
+            content.closest('.card').classList.add('flash-update');
+        }
+        window.previousMetrics[h3.innerText.trim()] = newValue;
+        h2.innerText = newValue;
       }
     });
 
@@ -806,6 +814,16 @@ async function fetchInsights() {
   }
 }
 
+
+window.resolveAlert = async function(id) {
+  try {
+    await fetch(`${API_BASE}/api/alerts/${id}/resolve`, { method: 'PUT' });
+    fetchAlerts(); // Refresh alerts list instantly
+  } catch(err) {
+    console.error(err);
+  }
+};
+
 async function fetchAlerts() {
   try {
     const response = await fetch(`${API_BASE}/api/alerts/active`);
@@ -824,7 +842,10 @@ async function fetchAlerts() {
               <h3>${alert.title}</h3>
               <p>${alert.message}</p>
             </div>
-            <div class="alert-time">Active</div>
+            <div class="alert-time" style="display:flex; flex-direction:column; align-items:flex-end;">
+              <span>Active</span>
+              <button onclick="resolveAlert(${alert.id})" style="margin-top:8px; padding:4px 8px; border:none; border-radius:4px; background:var(--accent-primary); color:var(--bg-main); cursor:pointer; font-weight:bold;">Acknowledge</button>
+            </div>
           </div>`;
       });
     }
@@ -833,56 +854,182 @@ async function fetchAlerts() {
   }
 }
 
-async function loadAnalyticsCharts() {
+
+
+let energyChartInstance = null;
+let waterChartInstance = null;
+
+async function loadAnalyticsCharts(timeframe = 'Today') {
   if (!window.location.pathname.includes("analytics.html")) return;
+  
+  let energyLabels = ['6AM', '9AM', '12PM', '3PM', '6PM', '9PM'];
+  let energyData = [3500, 5000, 7000, 8500, 6500, 4500];
+  let waterLabels = ['6AM', '9AM', '12PM', '3PM', '6PM', '9PM'];
+  let waterData = [3000, 4500, 6000, 7500, 5500, 4000];
 
   try {
-    // Energy Chart
     const energyRes = await fetch(`${API_BASE}/api/analytics/energy`);
-    const energyData = await energyRes.json();
-    const energyBars = document.querySelectorAll(".chart-card:nth-of-type(1) .bar");
-    
-    if (energyBars.length > 0 && energyData.length > 0) {
-      energyData.slice(-6).forEach((record, index) => {
-        if (energyBars[index]) {
-          const height = Math.min(100, Math.max(10, (record.current_consumption_kwh / 10000) * 100));
-          energyBars[index].style.height = `${height}%`;
-          energyBars[index].setAttribute("title", `${record.current_consumption_kwh} kWh`);
+    if (energyRes.ok) {
+        const energyJson = await energyRes.json();
+        if (energyJson.length > 0) {
+            energyLabels = energyJson.slice(-10).map(d => {
+                const date = new Date(d.timestamp);
+                return `${date.getHours()}:${date.getMinutes()}`;
+            });
+            energyData = energyJson.slice(-10).map(d => d.current_consumption_kwh);
         }
-      });
     }
+  } catch (err) { console.warn("Using fallback energy data"); }
 
-    // Water Chart
-    const waterRes = await fetch(`${API_BASE}/api/analytics/water`);
-    const waterData = await waterRes.json();
-    const waterBars = document.querySelectorAll(".chart-card:nth-of-type(2) .bar");
-    
-    if (waterBars.length > 0 && waterData.length > 0) {
-      waterData.slice(-6).forEach((record, index) => {
-        if (waterBars[index]) {
-          const height = Math.min(100, Math.max(10, (record.daily_usage_liters / 15000) * 100));
-          waterBars[index].style.height = `${height}%`;
-          waterBars[index].setAttribute("title", `${record.daily_usage_liters} L`);
+  const energyCtx = document.getElementById('energyChart');
+  if (energyCtx) {
+    if (energyChartInstance) energyChartInstance.destroy();
+    energyChartInstance = new Chart(energyCtx, {
+      type: 'line',
+      data: {
+        labels: energyLabels,
+        datasets: [{
+          label: 'Energy (kWh)',
+          data: energyData,
+          borderColor: '#35E0C0',
+          backgroundColor: 'rgba(53, 224, 192, 0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#F2FFFC' } } },
+        scales: {
+          x: { ticks: { color: '#9BC7C0' }, grid: { color: '#1D5B54' } },
+          y: { ticks: { color: '#9BC7C0' }, grid: { color: '#1D5B54' } }
         }
-      });
+      }
+    });
+  }
+
+  try {
+    const waterRes = await fetch(`${API_BASE}/api/analytics/water`);
+    if (waterRes.ok) {
+        const waterJson = await waterRes.json();
+        if (waterJson.length > 0) {
+            waterLabels = waterJson.slice(-10).map(d => {
+                const date = new Date(d.timestamp);
+                return `${date.getHours()}:${date.getMinutes()}`;
+            });
+            waterData = waterJson.slice(-10).map(d => d.daily_usage_liters);
+        }
     }
-  } catch (err) {
-    console.error(err);
+  } catch (err) { console.warn("Using fallback water data"); }
+
+  const waterCtx = document.getElementById('waterChart');
+  if (waterCtx) {
+    if (waterChartInstance) waterChartInstance.destroy();
+    waterChartInstance = new Chart(waterCtx, {
+      type: 'bar',
+      data: {
+        labels: waterLabels,
+        datasets: [{
+          label: 'Water (L)',
+          data: waterData,
+          backgroundColor: '#7CE7A8',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#F2FFFC' } } },
+        scales: {
+          x: { ticks: { color: '#9BC7C0' }, grid: { display: false } },
+          y: { ticks: { color: '#9BC7C0' }, grid: { color: '#1D5B54' } }
+        }
+      }
+    });
   }
 }
+
+
+// COMMAND CENTER UX FEATURES
+function initClock() {
+  const clockEl = document.getElementById('liveClock');
+  if (!clockEl) return;
+  setInterval(() => {
+    const now = new Date();
+    clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: false }) + " UTC" + (now.getTimezoneOffset() / -60);
+  }, 1000);
+}
+
+function initFullscreen() {
+  const fsBtn = document.getElementById('fullscreenToggle');
+  if (!fsBtn) return;
+  fsBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.warn(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      fsBtn.innerText = "⛶ Exit Kiosk";
+    } else {
+      document.exitFullscreen();
+      fsBtn.innerText = "⛶ Kiosk Mode";
+    }
+  });
+}
+
+window.exportCSV = async function() {
+  try {
+    const res = await fetch(`${API_BASE}/api/analytics/energy`);
+    const data = await res.json();
+    if (!data || data.length === 0) {
+      alert("No data available to export.");
+      return;
+    }
+    
+    // Generate CSV
+    const headers = Object.keys(data[0]).join(",");
+    const rows = data.map(obj => Object.values(obj).join(",")).join("\n");
+    const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + rows;
+    
+    // Trigger download
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "Hospital_Energy_Report.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (err) {
+    console.error("Export failed", err);
+    alert("Export failed. Ensure backend is running.");
+  }
+};
 
 function initApp() {
   if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
     return; // Don't fetch on landing page
   }
 
+  
+  const timeSelect = document.querySelector('.time-select');
+  if (timeSelect) {
+      timeSelect.addEventListener('change', (e) => {
+          loadAnalyticsCharts(e.target.value);
+      });
+  }
+  
+  initClock();
+  initFullscreen();
   fetchDashboardData();
+
   fetchInsights();
   fetchAlerts();
   loadAnalyticsCharts();
 
   setInterval(() => {
-    fetchDashboardData();
+    initClock();
+  initFullscreen();
+  fetchDashboardData();
     fetchInsights();
     fetchAlerts();
     loadAnalyticsCharts();
