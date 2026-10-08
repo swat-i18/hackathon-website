@@ -1025,6 +1025,100 @@ window.executeReallocation = function(btn) {
   }, 1500);
 };
 
+
+// MODAL SYSTEM
+window.showModal = function(title, bodyHTML, footerHTML) {
+  const overlay = document.getElementById('customModal');
+  if (!overlay) return;
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalBody').innerHTML = bodyHTML;
+  if (footerHTML) document.getElementById('modalFooter').innerHTML = footerHTML;
+  overlay.classList.add('active');
+};
+window.closeModal = function() {
+  const overlay = document.getElementById('customModal');
+  if (overlay) overlay.classList.remove('active');
+};
+
+window.initiateOverflow = function() {
+  showModal(
+    "Initiating Overflow Protocols",
+    `
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom: 16px;">
+        <div style="font-size:2rem; animation: pulse-emergency 1s infinite alternate;">⚠️</div>
+        <div>
+          <strong style="color:var(--text-main);">Routing patients to Wing C...</strong><br>
+          Notifying standby personnel in Ward 4.
+        </div>
+      </div>
+      <div class="progress-container"><div class="progress-bar" id="overflowProgress"></div></div>
+      <p id="overflowStatus" style="margin-top:12px; font-size:0.85rem;">Establishing secure comms...</p>
+    `,
+    `<button class="btn-outline" onclick="closeModal()">Cancel</button>`
+  );
+  
+  setTimeout(() => { 
+      const pb = document.getElementById('overflowProgress');
+      if(pb) pb.style.width = '100%'; 
+  }, 100);
+  setTimeout(() => { 
+      const st = document.getElementById('overflowStatus');
+      if(st) st.innerHTML = "<span style='color:var(--primary); font-weight:bold;'>✅ Wing C personnel mobilized. 12 beds reserved.</span>"; 
+  }, 2000);
+  setTimeout(() => { 
+    const ft = document.getElementById('modalFooter');
+    if(ft) ft.innerHTML = `<button class="btn-primary" onclick="closeModal()">Acknowledge</button>`;
+  }, 2200);
+};
+
+window.confirmEmergency = function() {
+  closeModal();
+  document.body.classList.add('emergency-mode');
+  const emBtn = document.getElementById('emergencyToggle');
+  if(emBtn) {
+      emBtn.innerText = "🛑 Cancel Emergency Protocol";
+      emBtn.style.backgroundColor = "#5a1111";
+  }
+  document.querySelectorAll('.card').forEach(card => {
+    if (card.innerText.includes('Beds') || card.innerText.includes('Staff')) {
+      card.classList.add('emergency-pulse');
+    }
+  });
+};
+
+
+function initEmergencyProtocol() {
+  const emBtn = document.getElementById('emergencyToggle');
+  if (!emBtn) return;
+  emBtn.addEventListener('click', () => {
+    if (document.body.classList.contains('emergency-mode')) {
+      document.body.classList.remove('emergency-mode');
+      emBtn.innerText = "🚨 Trigger Emergency Protocol";
+      emBtn.style.backgroundColor = "#ff4d4d";
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('emergency-pulse'));
+    } else {
+      if (typeof showModal === 'function') {
+          showModal(
+            "🚨 SYSTEM OVERRIDE: CODE RED",
+            `
+              <p style="color:#ffb3b3; font-weight:bold; font-size:1.1rem;">WARNING: Initiating Hospital-Wide Emergency Protocol.</p>
+              <ul style="margin-top:16px; margin-left:20px; line-height:1.8;">
+                <li>Standard operations dashboard will be overridden.</li>
+                <li>Emergency lighting sequences will be triggered.</li>
+                <li>Available standby staff will be universally paged.</li>
+              </ul>
+              <p style="margin-top:20px; font-size:1rem; color:var(--text-main);">Are you absolutely sure you want to proceed?</p>
+            `,
+            `
+              <button class="btn-outline" onclick="closeModal()">Cancel</button>
+              <button class="btn-primary" style="background:#ff4d4d; color:white; border:none;" onclick="confirmEmergency()">AUTHORIZE CODE RED</button>
+            `
+          );
+      }
+    }
+  });
+}
+
 function initApp() {
   if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
     return; // Don't fetch on landing page
