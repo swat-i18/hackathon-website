@@ -996,6 +996,35 @@ window.exportCSV = async function() {
   }
 };
 
+
+window.executeReallocation = function(btn) {
+  const originalText = btn.innerHTML;
+  btn.innerHTML = "🔄 Calculating optimal transfer...";
+  btn.style.opacity = "0.7";
+  btn.disabled = true;
+  
+  setTimeout(() => {
+    btn.innerHTML = "✅ Transfer Complete: 4 shifted to ER";
+    btn.style.backgroundColor = "var(--primary)";
+    btn.style.color = "var(--bg-main)";
+    btn.style.opacity = "1";
+    
+    // Visually update the staff metric to simulate the fix
+    const staffVal = document.getElementById('staffVal');
+    if (staffVal && staffVal.innerText.includes('/')) {
+        let parts = staffVal.innerText.split('/');
+        let available = parseInt(parts[0]) - 4; // 4 less available, now on duty
+        staffVal.innerText = available + " / " + parts[1];
+    }
+    
+    // Trigger pulse on the card
+    btn.closest('.card').classList.add('flash-update');
+    setTimeout(() => {
+        btn.closest('.card').classList.remove('flash-update');
+    }, 1500);
+  }, 1500);
+};
+
 function initApp() {
   if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
     return; // Don't fetch on landing page
