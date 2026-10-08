@@ -948,31 +948,24 @@ async function loadAnalyticsCharts(timeframe = 'Today') {
       }
     });
   }
-}
-
-
-// COMMAND CENTER UX FEATURES
-function initClock() {
-  const clockEl = document.getElementById('liveClock');
-  if (!clockEl) return;
-  setInterval(() => {
-    const now = new Date();
-    clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: false }) + " UTC" + (now.getTimezoneOffset() / -60);
-  }, 1000);
-}
-
-function initFullscreen() {
-  const fsBtn = document.getElementById('fullscreenToggle');
-  if (!fsBtn) return;
-  fsBtn.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(err => {
-        console.warn(`Error attempting to enable fullscreen: ${err.message}`);
+  const emBtn = document.getElementById('emergencyToggle');
+  if (!emBtn) return;
+  emBtn.addEventListener('click', () => {
+    document.body.classList.toggle('emergency-mode');
+    if (document.body.classList.contains('emergency-mode')) {
+      emBtn.innerText = "🛑 Cancel Emergency Protocol";
+      emBtn.style.backgroundColor = "#5a1111";
+      document.querySelectorAll('.card').forEach(card => {
+        if (card.innerText.includes('Beds') || card.innerText.includes('Staff')) {
+          card.classList.add('emergency-pulse');
+        }
       });
-      fsBtn.innerText = "⛶ Exit Kiosk";
     } else {
-      document.exitFullscreen();
-      fsBtn.innerText = "⛶ Kiosk Mode";
+      emBtn.innerText = "🚨 Trigger Emergency Protocol";
+      emBtn.style.backgroundColor = "#ff4d4d";
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('emergency-pulse');
+      });
     }
   });
 }
@@ -986,12 +979,10 @@ window.exportCSV = async function() {
       return;
     }
     
-    // Generate CSV
     const headers = Object.keys(data[0]).join(",");
     const rows = data.map(obj => Object.values(obj).join(",")).join("\n");
     const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + rows;
     
-    // Trigger download
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -1018,8 +1009,7 @@ function initApp() {
       });
   }
   
-  initClock();
-  initFullscreen();
+  initEmergencyProtocol();
   fetchDashboardData();
 
   fetchInsights();
@@ -1027,8 +1017,7 @@ function initApp() {
   loadAnalyticsCharts();
 
   setInterval(() => {
-    initClock();
-  initFullscreen();
+    initEmergencyProtocol();
   fetchDashboardData();
     fetchInsights();
     fetchAlerts();
